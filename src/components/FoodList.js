@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
-import FODMAPS from './../data/foods';
 
 class FoodList extends Component {
-    
+
+    constructor(props) {
+        super(props)
+        this.state={
+            fodmaps: this.props.fodmaps
+        }
+    }
+
     render() {
         return (
             <div>
-                
-                FoodList
+                <ul>
+                    {this.state.fodmaps.map((item, index) => (
+                        <li key={index}>{item}</li>
+                    ))}
+              </ul>
             </div>
-        )
+        );
     }
 }
 
