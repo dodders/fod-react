@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import FoodSelector from './FoodSelector';
 import FoodList from './FoodList';
-import getFodMaps from './../data/foods';
 
 class Body extends Component {
 
     constructor(props) {
         super(props);
-        const fods = getFodMaps();
         this.state = {
-            fodmaps: fods
+            fodmaps: props.fodmaps,
+            search: props.search
         }
     }
 
@@ -17,7 +16,7 @@ class Body extends Component {
         return (
             <div>
                 <FoodSelector />
-                <FoodList fodmaps={this.state.fodmaps} />
+                <FoodList fodmaps={this.state.fodmaps} search={this.state.search} />
             </div>
         )
     }
