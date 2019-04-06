@@ -6,12 +6,9 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            fodmaps: props.fodmaps
+            fodmaps: props.fodmaps,
+            doSearch: props.doSearch
         }
-    }
-
-    doSearch(event) {
-        console.log(event.target.value);
     }
 
     render() {
@@ -24,11 +21,6 @@ class Header extends Component {
                         {/* <Nav className="mr-auto">
                             <Nav.Link href="#link">Link</Nav.Link>
                         </Nav> */}
-                        <Form inline>
-                            <FormControl size="sm" type="text" placeholder="Search" className="mr-sm-2"
-                                onChange={this.doSearch} />
-                            <Button size="sm" variant="outline-primary">Search</Button>
-                        </Form>
                     </Navbar.Collapse>
                 </Navbar>;            </div>
         )

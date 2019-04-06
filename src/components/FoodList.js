@@ -7,28 +7,12 @@ class FoodList extends Component {
         super(props)
         this.state= {
             fodmaps: this.props.fodmaps,
-            search: this.props.search
+            searchTxt: this.props.searchTxt
         }
     }
 
     render() {
         return (
-            <div>
-                <p></p>
-                <Table striped bordered>
-                    <thead>
-                        <tr>Fodmap</tr>
-                    </thead>
-                    <tbody>
-                        {this.state.fodmaps.map((item, index) => (
-                            <tr key={index}>
-                                <td>{index}</td>
-                                <td>{item}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </Table>
-            </div>
         );
     }
 }

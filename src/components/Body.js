@@ -1,22 +1,56 @@
 import React, { Component } from 'react';
-import FoodSelector from './FoodSelector';
-import FoodList from './FoodList';
+import getFodMaps from '../data/foods';
+import { Table } from 'react-bootstrap';
 
 class Body extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            fodmaps: props.fodmaps,
-            search: props.search
-        }
+    state = {
+        fodmaps: [],
+        search: ''
+    }
+
+    componentDidMount() {
+        var fods = getFodMaps();
+        this.setState({
+            fodmaps: fods,
+            search: this.state.search
+        })
+    }
+
+    doSearch = (event) => {
+        this.setState({
+            fodmaps: this.state.fodmaps,
+            search: event.target.value
+        });
     }
 
     render() {
         return (
             <div>
-                <FoodSelector />
-                <FoodList fodmaps={this.state.fodmaps} search={this.state.search} />
+                <div>
+                    <input id="search" type="text" onChange={this.doSearch} />
+                </div>
+                <div>
+                    <Table striped bordered>
+                        <tbody>
+                            {(this.state.search === '') ?
+                                this.state.fodmaps.map((item, index) => (
+                                    <tr key={index}>
+                                        <td>{index}</td>
+                                        <td>{item}</td>
+                                    </tr>))
+                                :
+                                this.state.fodmaps
+                                    .filter(x => x.includes(this.state.search))
+                                    .map((item, index) => (
+                                        <tr key={index}>
+                                            <td>{index}</td>
+                                            <td>{item}</td>
+                                        </tr>))
+                            }
+                        </tbody>
+                    </Table>
+                </div>
             </div>
         )
     }
