@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import getFodMaps from '../data/foods';
-import { Table } from 'react-bootstrap';
+import { Input, List } from 'semantic-ui-react';
 
 class Body extends Component {
 
@@ -28,28 +28,22 @@ class Body extends Component {
         return (
             <div>
                 <div>
-                    <input id="search" type="text" onChange={this.doSearch} />
+                    <Input id="search" type="text" onChange={this.doSearch} />
+                    {/* <input id="search" type="text" onChange={this.doSearch} /> */}
                 </div>
                 <div>
-                    <Table striped bordered>
-                        <tbody>
+                    <List>
                             {(this.state.search === '') ?
                                 this.state.fodmaps.map((item, index) => (
-                                    <tr key={index}>
-                                        <td>{index}</td>
-                                        <td>{item}</td>
-                                    </tr>))
+                                    <List.Item>{item}</List.Item>))
                                 :
                                 this.state.fodmaps
                                     .filter(x => x.includes(this.state.search))
                                     .map((item, index) => (
-                                        <tr key={index}>
-                                            <td>{index}</td>
-                                            <td>{item}</td>
-                                        </tr>))
+                                        <List.Item>{item}</List.Item>
+                                    ))
                             }
-                        </tbody>
-                    </Table>
+                    </List>
                 </div>
             </div>
         )
